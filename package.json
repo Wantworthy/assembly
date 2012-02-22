@@ -1,0 +1,40 @@
+{
+  "name": "assembly",
+  "description": "build tool to assemble client side javascript projects",
+  "version": "0.0.1",
+  "author": "Ryan Fitzgerald <ryan@codebrewstudios.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Wantworthy/assembly.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+   ],
+  "keywords": ["client", "templates", "handlebars", "middleware","flatiron", "web"],
+  "dependencies": {
+    "flatiron" : "0.1.x",
+    "union" : "0.1.x",
+    "ecstatic": "0.1.x",
+    "utile": "0.0.10",
+    "watch": "0.5.x",
+    "pkginfo": "0.2.x",
+    "findit" : "0.1.x"
+  },
+  "devDependencies": {
+    "mocha" : "0.12.x",
+    "should": "0.5.x",
+    "request" : "2.9.x",
+    "express" : "2.5.x",
+    "less" : "1.2.x",
+    "coffee-script" : "1.2.x",
+    "handlebars" : "1.0.x"
+  },
+  "scripts": {
+    "test"  : "make test"
+  },
+  "engines": { "node": ">= 0.6.0" },
+  "main": "./lib/assembly"
+}
