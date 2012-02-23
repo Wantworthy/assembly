@@ -1,4 +1,4 @@
-var Handlebars = require("handlebars.runtime")
+var Handlebars = require("handlebars.runtime");
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
