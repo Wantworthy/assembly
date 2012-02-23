@@ -1,0 +1,3 @@
+exports.app = {
+  foo : "Bar"
+};
