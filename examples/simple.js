@@ -8,3 +8,4 @@ assembler.use(assembly.compilers.less);
 assembler.use(assembly.compilers.hbs);
 
 console.log("monitoring dir:", opts.src);
+assembler.rebuild();
