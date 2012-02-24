@@ -1,6 +1,6 @@
 var assembly = require("../lib/assembly");
 
-var opts = {src : __dirname + "/src", out: __dirname +"/build"};
+var opts = {src : __dirname + "/src", dest: __dirname +"/build"};
 
 var assembler = assembly.start(opts);
 
