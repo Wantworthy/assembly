@@ -25,7 +25,7 @@
     "detective" : "0.0.x"
   },
   "devDependencies": {
-    "mocha" : "0.12.x",
+    "mocha" : "0.13.x",
     "should": "0.5.x",
     "request" : "2.9.x",
     "less" : "1.2.x",
