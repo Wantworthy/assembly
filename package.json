@@ -15,7 +15,6 @@
    ],
   "keywords": ["client", "templates", "handlebars", "middleware","flatiron", "web"],
   "dependencies": {
-    "flatiron" : "0.1.x",
     "broadway" : "0.1.x",
     "mime" : "1.2.x",
     "utile": "0.0.10",
@@ -28,7 +27,6 @@
   "devDependencies": {
     "mocha" : "0.13.x",
     "should": "0.5.x",
-    "request" : "2.9.x",
     "less" : "1.2.x",
     "coffee-script" : "1.2.x",
     "handlebars" : "1.0.x",
