@@ -8,6 +8,7 @@ test-unit:
 		--ui bdd \
 		--reporter $(REPORTER) \
 		--require should \
+		--globals i \
 		test/*-test.js
 
 test-spec:

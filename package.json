@@ -22,7 +22,8 @@
     "watch": "0.5.x",
     "pkginfo": "0.2.x",
     "findit" : "0.1.x",
-    "detective" : "0.0.x"
+    "detective" : "0.0.x",
+    "resolve" : "0.1.x"
   },
   "devDependencies": {
     "mocha" : "0.13.x",
