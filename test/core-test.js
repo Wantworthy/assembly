@@ -1,15 +1,11 @@
-var Core = require("../lib/assembly/core").Core,
+var TestHelper = require("./test-helper"),
     util = require('utile'),
     should = require('should'),
     fs = require("fs"),
     path = require('path');
 
 describe("Core", function() {
-  var core;
-
-  before(function() {
-    core = new Core({src: __dirname + "/fixtures", dest : __dirname + "/build"});
-  });
+  var core = TestHelper.core;
 
   describe('Build Path', function() {
 
@@ -59,6 +55,52 @@ describe("Core", function() {
       requires.should.include(core.src + "/foo.js");
       requires.should.include(path.resolve(__dirname + "/../vendor", "handlebars.runtime.js"));
       requires.should.include(require.resolve('underscore'));
+    });
+
+  });
+
+  describe("Modified", function() {
+    before(TestHelper.mkTestDir);
+
+    after(TestHelper.rmTestDir);
+
+    it("should callback with true for source file with mtime greater than build files mtime", function(done) {
+      var srcFile = core.src+ "/app.js",
+          now = new Date().getTime(),
+          future = new Date().getTime() + 555;
+
+      TestHelper.modifyTimes(srcFile, future, now);
+  
+      core.modified(srcFile, function(modified){
+        modified.should.be.true;
+        done();
+      })
+    });
+
+    it("should callback with false for files with same mtime", function(done) {
+      var srcFile = core.src+ "/app.js",
+          now = new Date().getTime();
+
+      TestHelper.modifyTimes(srcFile, now, now);
+  
+      core.modified(srcFile, function(modified){
+        modified.should.be.false;
+        done();
+      })
+    });
+
+
+    it("should callback with false when build file has mtime greater than source file", function(done) {
+      var srcFile = core.src+ "/app.js",
+          now = new Date().getTime(),
+          future = new Date().getTime() + 555;
+
+      TestHelper.modifyTimes(srcFile, now, future);
+  
+      core.modified(srcFile, function(modified){
+        modified.should.be.false;
+        done();
+      })
     });
 
   });
