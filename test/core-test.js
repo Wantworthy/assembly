@@ -42,7 +42,6 @@ describe("Core", function() {
       var dest = core.buildPath(core.src +"/foo.js", {fullpath : true});
       dest.should.eql(core.dest + "/foo.js");
     });
-
   });
 
   describe('Requires', function(){
