@@ -1,5 +1,6 @@
 REPORTER = spec
 VERSION := $(shell cat package.json | grep version | grep -o '[0-9]\.[0-9]\.[0-9]')
+TESTFILES := $(shell find test -name '*-test.js')
 
 test: test-unit
 
@@ -9,7 +10,7 @@ test-unit:
 		--reporter $(REPORTER) \
 		--require should \
 		--globals i \
-		test/*-test.js
+		$(TESTFILES)
 
 test-spec:
 	@./node_modules/.bin/mocha \

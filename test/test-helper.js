@@ -1,6 +1,7 @@
 var fs = require('fs'),
     path = require('path'),
     utile = require('utile'),
+    broadway = require("broadway"),
     Core = require("../lib/assembly/core").Core;
 
 var helper = exports;
@@ -27,3 +28,11 @@ helper.modifyTimes = function(srcFile, srcFileModTime, buildFileModTime) {
   fs.utimesSync(srcFile, srcFileModTime, srcFileModTime);
   fs.utimesSync(buildFile, buildFileModTime, buildFileModTime);
 };
+
+helper.mockApp = function() {
+  var mock = new broadway.App();
+  mock.src = helper.testSrcDir;
+  mock.dest = helper.testBuildDir;
+  
+  return mock;
+}
