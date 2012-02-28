@@ -8,7 +8,7 @@ var helper = exports;
 
 helper.testBuildDir = __dirname +"/build";
 helper.testSrcDir = __dirname +"/fixtures";
-helper.core = new Core({src : helper.testSrcDir, dest : helper.testBuildDir});
+helper.core = new Core({src : helper.testSrcDir, dest : helper.testBuildDir, cache: false});
 
 helper.mkTestDir = function (cb) {
   path.exists(helper.testBuildDir, function (exists) {

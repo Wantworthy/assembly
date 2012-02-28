@@ -22,4 +22,34 @@ describe("Amdify Processor", function() {
     done();
   });
 
+  describe("Module ID", function() {
+
+    it("should return module id for nested file", function() {
+      var id = amdify._moduleID(core.src + "/blah/foo.js");
+
+      id.should.equal("blah/foo");
+    });
+
+    it("should return module id for vendored file", function() {
+      var id = amdify._moduleID(core.src + "/vendor/handlebars.runtime.js");
+
+      id.should.equal("vendor/handlebars.runtime");
+    });
+
+    it("should return module id for file within node_modules", function() {
+      var id = amdify._moduleID("/users/dude/code/assembly/node_modules/underscore.js");
+
+      id.should.equal("vendor/underscore");
+    });
+  });
+
+  describe("Dependencies", function() {
+
+    it("should return single dependency", function(){
+      var deps = amdify._dependencies(TestHelper.fixture("app.js"));
+      deps.should.eql(['require', 'module', 'exports', 'foo']);
+    });
+
+  });
+
 });
