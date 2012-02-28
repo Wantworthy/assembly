@@ -35,4 +35,8 @@ helper.mockApp = function() {
   mock.dest = helper.testBuildDir;
   
   return mock;
-}
+};
+
+helper.fixture = function(filename) {
+  return fs.readFileSync(helper.testSrcDir + "/" + filename, "utf-8");
+};

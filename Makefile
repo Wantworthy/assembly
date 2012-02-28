@@ -18,7 +18,8 @@ test-spec:
 		--reporter $(REPORTER) \
 		--require should \
 		--grep "$(grep)" \
-		test/*-test.js
+		--globals i \
+		$(TESTFILES)
 
 release:
 	git tag -a v$(VERSION) -m 'release version $(VERSION)'
