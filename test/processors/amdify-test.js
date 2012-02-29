@@ -52,4 +52,40 @@ describe("Amdify Processor", function() {
 
   });
 
+  describe("Is Common JS", function(){
+    it("should return true for simple source with export statment", function() {
+
+      var isCommon = amdify.isCommonJS('exports.foo = "bar";');
+
+      isCommon.should.be.true;
+    });
+
+    it("should return true for simple source with require statment", function() {
+      var isCommon = amdify.isCommonJS('var bob=require("bob");');
+
+      isCommon.should.be.true;
+    });
+
+    it("should return true for simple app.js source", function() {
+      var isCommon = amdify.isCommonJS(TestHelper.fixture("app.js"));
+
+      isCommon.should.be.true;
+    });
+
+    it("should return false for jquery source", function() {
+      var jquery = TestHelper.fixture("jquery-1.7.1.js");
+      var isCommon = amdify.isCommonJS(jquery);
+
+      isCommon.should.be.false;
+    });    
+
+    it("should return true for underscore source", function() {
+      var underscore = TestHelper.fixture("underscore.js");
+      var isCommon = amdify.isCommonJS(underscore);
+
+      isCommon.should.be.true;
+    });
+
+  });
+
 });
