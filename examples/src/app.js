@@ -1,7 +1,7 @@
 var name = require("./foo").name;
 
-console.log("foo is.....", name);
+console.log("foo's name is.....", name);
 exports.app = {
-  foo : "sadfasdf",
+  foo : "moar...",
   name : name
 };

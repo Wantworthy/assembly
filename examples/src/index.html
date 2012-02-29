@@ -13,7 +13,7 @@ document.getElementById("clearit").onclick = function() {
   require.clearCache();
 };
 
-require.setModuleRoot("/");
+require.setModuleRoot("");
 
 require.ensure(["app", "vendor/jquery"], function(require){
   var app = require('app').app;
