@@ -3,6 +3,7 @@ var assembly = require("../lib/assembly"),
 
 var assembler = assembly.start({src : __dirname + "/src", dest: __dirname +"/build"});
 assembler.use(assembly.processors.amdify);
+assembler.use(assembly.processors.pathify);
 
 var server = httpServer.createServer({root: assembler.dest, cache: false});
 

@@ -24,8 +24,8 @@
     "detective" : "0.0.x",
     "deputy" : "0.0.x",
     "resolve" : "0.1.x",
-    "burrito" : "0.2.x",
-    "uglify-js" : "1.2.x"
+    "uglify-js" : "1.2.x",
+    "traverse" : "0.6.x"
   },
   "devDependencies": {
     "mocha" : "0.13.x",
