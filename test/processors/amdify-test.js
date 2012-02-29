@@ -45,8 +45,8 @@ describe("Amdify Processor", function() {
 
   describe("Dependencies", function() {
 
-    it("should return single dependency", function(){
-      var deps = amdify._dependencies(TestHelper.fixture("app.js"));
+    it("should return single dependency", function() {
+      var deps = amdify._dependencies(core.src + "/app.js", TestHelper.fixture("app.js"));
       deps.should.eql(['require', 'module', 'exports', 'foo']);
     });
 
@@ -77,10 +77,10 @@ describe("Amdify Processor", function() {
       var isCommon = amdify.isCommonJS(jquery);
 
       isCommon.should.be.false;
-    });    
+    });
 
     it("should return true for underscore source", function() {
-      var underscore = TestHelper.fixture("underscore.js");
+      var underscore = fs.readFileSync(require.resolve('underscore'), "utf-8");
       var isCommon = amdify.isCommonJS(underscore);
 
       isCommon.should.be.true;

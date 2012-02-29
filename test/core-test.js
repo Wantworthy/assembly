@@ -50,16 +50,33 @@ describe("Core", function() {
     });
   });
 
-  describe('Requires', function(){
+  describe('Requires', function() {
     
     it("should return single relative require", function() {
-      var requires = core.requires(fs.readFileSync(core.src+ "/app.js"));
+      var filename = core.src+ "/app.js";
+      var requires = core.requires(filename, fs.readFileSync(filename));
       requires.should.have.length(1);
       requires.should.eql([core.src + "/foo.js"]);
     });
 
+    it("should return nested foo.js as dep", function() {
+      var filename = core.src+ "/nested/baz.js";
+      var requires = core.requires(filename, fs.readFileSync(filename));
+      requires.should.have.length(1);
+      requires.should.eql([core.src + "/nested/foo.js"]);
+    });
+
+    it("should return simbling foo and parent foo deps", function() {
+      var filename = core.src+ "/nested/parent.js";
+      var requires = core.requires(filename, fs.readFileSync(filename));
+      requires.should.have.length(2);
+      requires.should.include(core.src + "/nested/foo.js");
+      requires.should.include(core.src + "/foo.js");
+    });
+
     it("should return requires from relative, vendor and node_modules", function() {
-      var requires = core.requires(fs.readFileSync(core.src+ "/complex.js"));
+      var filename = core.src+ "/complex.js";
+      var requires = core.requires(filename, fs.readFileSync(filename));
       requires.should.have.length(3);
 
       requires.should.include(core.src + "/foo.js");
