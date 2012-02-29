@@ -31,7 +31,8 @@
     "less" : "1.2.x",
     "coffee-script" : "1.2.x",
     "handlebars" : "1.0.x",
-    "underscore" : "1.3.x"
+    "underscore" : "1.3.x",
+    "http-server" : "git://github.com/nodeapps/http-server.git"
   },
   "scripts": {
     "test"  : "make test"

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="/vendor/inject.js"></script>
+</head>
+<body>
+<h1>Testing......</h1>
+
+<button id="clearit">Clear Cache</button>
+
+<script type="text/javascript">
+document.getElementById("clearit").onclick = function() {
+  require.clearCache();
+};
+
+require.setModuleRoot("/");
+require.addRule(/^jquery$/, {
+  path: "vendor/jquery.js"
+});
+
+require.ensure(["app", "jquery"], function(require){
+  var app = require('app').app;
+  var $ = require('jquery');
+  console.log($);
+  console.log(app);
+  // alert(app.name);
+});
+</script>
+</body>
+</html>
