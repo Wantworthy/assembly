@@ -83,7 +83,13 @@ describe("Core", function() {
       requires.should.include(path.resolve(__dirname + "/../vendor", "handlebars.runtime.js"));
       requires.should.include(require.resolve('underscore'));
     });
+  });
 
+  describe("Resolve", function(){
+    it("should find jquery", function() {
+      var out = core.resolve(core.src +"/vendor/jquery.js", "jquery");
+      out.should.equal(core.src +"/vendor/jquery.js");
+    });
   });
 
   describe("Modified", function() {

@@ -54,4 +54,9 @@ describe("Pathify Processor", function() {
     out.should.equal('(function() {\n    require("nested/baz");\n})();');
   });
 
+  it("should update define to dest path", function() {
+    var out = pathify.process(core.src +"/vendor/jquery.js", 'define( "jquery", [], function () { return jQuery; } );');
+    out.should.equal('define("vendor/jquery", [], function() {\n    return jQuery;\n});');
+  });
+
 });

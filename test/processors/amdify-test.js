@@ -73,7 +73,7 @@ describe("Amdify Processor", function() {
     });
 
     it("should return false for jquery source", function() {
-      var jquery = TestHelper.fixture("jquery-1.7.1.js");
+      var jquery = TestHelper.fixture("vendor/jquery.js");
       var isCommon = amdify.isCommonJS(jquery);
 
       isCommon.should.be.false;

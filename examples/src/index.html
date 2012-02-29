@@ -14,15 +14,11 @@ document.getElementById("clearit").onclick = function() {
 };
 
 require.setModuleRoot("/");
-require.addRule(/^jquery$/, {
-  path: "vendor/jquery.js"
-});
 
-require.ensure(["app", "jquery"], function(require){
+require.ensure(["app", "vendor/jquery"], function(require){
   var app = require('app').app;
-  var $ = require('jquery');
-  console.log($);
-  console.log(app);
+  var $ = require('vendor/jquery');
+  console.log("App name is:", app.name);
 });
 </script>
 </body>
