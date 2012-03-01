@@ -6,6 +6,8 @@
 <body>
 <h1>Testing......</h1>
 
+<div id="template"> bbb</div>
+
 <button id="clearit">Clear Cache</button>
 
 <script type="text/javascript">
@@ -18,7 +20,10 @@ require.setModuleRoot("");
 require.ensure(["app", "vendor/jquery"], function(require){
   var app = require('app').app;
   var $ = require('vendor/jquery');
-  console.log("App name is:", app.name);
+  console.log(app);
+  $(function(){
+    $("#template").html(app.template({name : "Dude"}));
+  });
 });
 </script>
 </body>
