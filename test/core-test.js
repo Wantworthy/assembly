@@ -74,14 +74,14 @@ describe("Core", function() {
       requires.should.include(core.src + "/foo.js");
     });
 
-    it("should return requires from relative, vendor and node_modules", function() {
+    it("should return requires from relative, and vendor dirs", function() {
       var filename = core.src+ "/complex.js";
       var requires = core.requires(filename, fs.readFileSync(filename));
       requires.should.have.length(3);
 
       requires.should.include(core.src + "/foo.js");
       requires.should.include(path.resolve(__dirname + "/../vendor", "handlebars.runtime.js"));
-      requires.should.include(require.resolve('underscore'));
+      requires.should.include(path.resolve(__dirname + "/../vendor", "underscore.js"));
     });
   });
 
