@@ -59,4 +59,14 @@ describe("Pathify Processor", function() {
     out.should.equal('define("vendor/jquery", [], function() {\n    return jQuery;\n});');
   });
 
+  it("should update define dependency paths", function() {
+    var out = pathify.process(core.src +"/vendor/backbone.js", "define(['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
+    out.should.eql('define([ "vendor/underscore", "vendor/jquery", "exports" ], function(_, $, exports) {});');    
+  });  
+
+  it("should update define with name and dependencies paths", function() {
+    var out = pathify.process(core.src +"/vendor/backbone.js", "define('backbone', ['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
+    out.should.eql('define("vendor/backbone", [ "vendor/underscore", "vendor/jquery", "exports" ], function(_, $, exports) {});');    
+  });
+
 });
