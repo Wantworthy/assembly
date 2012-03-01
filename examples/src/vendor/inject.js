@@ -1207,13 +1207,9 @@ createModule = function(id, uri, exports) {
   module["uri"] = uri || null;
   module["exports"] = exports || db.module.getExports(id) || {};
   module["setExports"] = function(xobj) {
-    var name, _i, _len, _ref;
-    _ref = module["exports"];
-    for(_i = 0, _len = _ref.length;_i < _len;_i++) {
-      name = _ref[_i];
-      throw new Error("cannot setExports when exports have already been set");
+    if(xobj !== void 0) {
+      module["exports"] = xobj
     }
-    module["exports"] = xobj;
     return module["exports"]
   };
   return module
