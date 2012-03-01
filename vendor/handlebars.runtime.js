@@ -221,3 +221,7 @@ Handlebars.VM = {
 
 Handlebars.template = Handlebars.VM.template;
 ;
+
+if ( typeof define === "function" && define.amd ) {
+  define( "handlebars.runtime", [], function () { return Handlebars; } );
+}
