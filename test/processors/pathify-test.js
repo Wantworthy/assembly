@@ -67,6 +67,15 @@ describe("Pathify Processor", function() {
   it("should update define with name and dependencies paths", function() {
     var out = pathify.process(core.src +"/vendor/backbone.js", "define('backbone', ['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
     out.should.eql('define("vendor/backbone", [ "vendor/underscore", "vendor/jquery", "exports" ], function(_, $, exports) {});');    
+  });  
+
+  it("should not update defined keyword dependencies", function() {
+    pathify.keywords.forEach(function(f){fs.writeFileSync(core.src +"/vendor/" + f +".js");});
+
+    var out = pathify.process(core.src +"/vendor/backbone.js", 'define("app", ["require", "module", "exports"], function(require, module, exports) {});');
+    out.should.equal('define("app", [ "require", "module", "exports" ], function(require, module, exports) {});');
+
+    pathify.keywords.forEach(function(f){fs.unlinkSync(core.src +"/vendor/" + f +".js");});
   });
 
 });

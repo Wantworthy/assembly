@@ -28,7 +28,7 @@
     "traverse" : "0.6.x"
   },
   "devDependencies": {
-    "mocha" : "0.13.x",
+    "mocha" : "0.14.x",
     "should": "0.5.x",
     "less" : "1.2.x",
     "coffee-script" : "1.2.x",
