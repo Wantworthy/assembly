@@ -58,6 +58,13 @@ describe("Amdify Processor", function() {
       var isCommon = amdify.isCommonJS('exports.foo = "bar";');
 
       isCommon.should.be.true;
+    });    
+
+    it("should return true for handlebars templates", function() {
+
+      var isCommon = amdify.isCommonJS('var Handlebars = require("vendor/handlebars.runtime");');
+
+      isCommon.should.be.true;
     });
 
     it("should return true for simple source with require statment", function() {
