@@ -90,6 +90,13 @@ describe("Core", function() {
       var out = core.resolve(core.src +"/vendor/jquery.js", "jquery");
       out.should.equal(core.src +"/vendor/jquery.js");
     });
+
+    it("should find jst template", function() {
+      core.extensions.push(".jst");
+      var out = core.resolve(core.src +"/app.js", "./templates/simple");
+      out.should.equal(core.src +"/templates/simple.jst");
+    });
+
   });
 
   describe("Modified", function() {
