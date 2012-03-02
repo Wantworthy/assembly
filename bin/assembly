@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+var assembly = require("../lib/assembly"),
+    path = require('path');
+
+var argv = require('optimist')
+    .usage('Usage: $0 [source dir] [dest dir] {OPTIONS}')
+    .wrap(80)
+    .option('amdify', {
+        alias : 'a',
+        desc : 'Convert javascript files to amd defined javascript' 
+            +  'generated code will work with any amd loader',
+        type : 'boolean'
+    })    
+    .option('minify', {
+        alias : 'm',
+        desc : 'Minify all javascript with Uglify-js minifier',
+        type : 'boolean'
+    })
+    .option('overwrite', {
+        alias : 'o',
+        desc : 'overwrite all files in destination dir\n'
+            +  'WARNING this will delete all current files in destination dir',
+        type : 'boolean'
+    })    
+    .option('watch', {
+        alias : 'w',
+        desc : 'Watch for changes in src directory. The script will stay open and write updates '
+            + 'to the destination directory every time any of the src files change.',
+        type : 'boolean'
+    })
+    .option('help', {
+        alias : 'h',
+        desc : 'Show this message'
+    })
+    .check(function (argv) {
+        if (argv.help) throw ''
+        if (process.argv.length <= 2) throw ''
+    })
+    .argv;
+
+var dest = path.join(process.cwd(), argv._.pop()),
+    src = path.join(process.cwd(), argv._.pop());
+
+var assembler = assembly.createAssembler({src : src, dest: dest, watch : argv.watch, overwrite: argv.overwrite});
+assembler.use(assembly.processors.pathify); // for now always use pathify processor
+
+if(argv.amdify) {
+  assembler.use(assembly.processors.amdify);
+}
+
+if(argv.minify) {
+  assembler.use(assembly.processors.minify);
+}
+
+assembler.start();
+
+if(assembler.watch) {
+  assembler.log.info("watching for changes in " + assembler.src);
+}

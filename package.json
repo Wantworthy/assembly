@@ -25,7 +25,8 @@
     "deputy" : "0.0.x",
     "resolve" : "0.1.x",
     "uglify-js" : "1.2.x",
-    "traverse" : "0.6.x"
+    "traverse" : "0.6.x",
+    "optimist" : "0.3.x"
   },
   "devDependencies": {
     "mocha" : "0.14.x",
