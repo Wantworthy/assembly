@@ -21,7 +21,7 @@
     "watch": "0.5.x",
     "pkginfo": "0.2.x",
     "findit" : "0.1.x",
-    "detective" : "0.0.x",
+    "detective" : "0.1.x",
     "deputy" : "0.0.x",
     "resolve" : "0.1.x",
     "uglify-js" : "1.2.x",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "mocha" : "0.14.x",
-    "should": "0.5.x",
+    "should": "0.6.x",
     "less" : "1.2.x",
     "coffee-script" : "1.2.x",
     "handlebars" : "1.0.x",
