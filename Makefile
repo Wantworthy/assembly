@@ -9,7 +9,7 @@ test-unit:
 		--ui bdd \
 		--reporter $(REPORTER) \
 		--require should \
-		--globals i \
+		--globals i,e \
 		$(TESTFILES)
 
 test-spec:
@@ -18,7 +18,7 @@ test-spec:
 		--reporter $(REPORTER) \
 		--require should \
 		--grep "$(grep)" \
-		--globals i \
+		--globals i,e \
 		$(TESTFILES)
 
 release:
