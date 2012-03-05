@@ -58,7 +58,7 @@ if(argv.minify) {
 }
 
 if(argv.zip) {
-  assembler.use(assembly.processors.gzip);
+  assembler.use(assembly.plugins.gzip);
 }
 
 assembler.start();
