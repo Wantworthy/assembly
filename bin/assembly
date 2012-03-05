@@ -28,6 +28,10 @@ var argv = require('optimist')
         desc : 'Watch for changes in src directory. The script will stay open and write updates '
             + 'to the destination directory every time any of the src files change.',
         type : 'boolean'
+    }).option('zip', {
+        alias : 'z',
+        desc  : 'write out gzipped assets alongside the compiled assets',
+        type  : 'boolean'
     })
     .option('help', {
         alias : 'h',
@@ -51,6 +55,10 @@ if(argv.amdify) {
 
 if(argv.minify) {
   assembler.use(assembly.processors.minify);
+}
+
+if(argv.zip) {
+  assembler.use(assembly.processors.gzip);
 }
 
 assembler.start();
