@@ -21,7 +21,7 @@
     "watch": "0.5.x",
     "pkginfo": "0.2.x",
     "findit" : "0.1.x",
-    "detective" : "0.1.x",
+    "detective" : "~0.1.0",
     "deputy" : "0.0.x",
     "resolve" : "0.1.x",
     "uglify-js" : "1.2.x",
