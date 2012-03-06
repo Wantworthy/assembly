@@ -31,15 +31,15 @@ describe("Amdify Processor", function() {
     });
 
     it("should return module id for vendored file", function() {
-      var id = amdify._moduleID(core.src + "/vendor/handlebars.runtime.js");
+      var id = amdify._moduleID(core.jsRoot + "/vendor/handlebars.runtime.js");
 
-      id.should.equal("vendor/handlebars.runtime");
+      id.should.equal("js/vendor/handlebars.runtime");
     });
 
     it("should return module id for file within node_modules", function() {
       var id = amdify._moduleID("/users/dude/code/assembly/node_modules/underscore.js");
 
-      id.should.equal("vendor/underscore");
+      id.should.equal("js/vendor/underscore");
     });
   });
 
@@ -80,7 +80,7 @@ describe("Amdify Processor", function() {
     });
 
     it("should return false for jquery source", function() {
-      var jquery = TestHelper.fixture("vendor/jquery.js");
+      var jquery = TestHelper.fixture("js/vendor/jquery.js");
       var isCommon = amdify.isCommonJS(jquery);
 
       isCommon.should.be.false;

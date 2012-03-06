@@ -11,22 +11,22 @@ describe("Core", function() {
 
     it("should return relative vendor path for libs in node_modules", function(){
       var dest = core.buildPath("/home/user/code/node/assembly/node_modules/underscore/underscore.js");
-      dest.should.eql("vendor/underscore/underscore.js");
+      dest.should.eql("js/vendor/underscore/underscore.js");
     });
 
     it("should return absolute vendor path for libs in node_modules", function(){
       var dest = core.buildPath("/home/user/code/node/assembly/node_modules/underscore/underscore.js", {fullpath: true});
-      dest.should.eql(core.dest + "/vendor/underscore/underscore.js");
+      dest.should.eql(core.destJSRoot + "/vendor/underscore/underscore.js");
     });
 
     it('should return relative build/vendor path for src/vendor lib', function() {
-      var dest = core.buildPath(core.src + "/vendor/handlebars.runtime.js");
-      dest.should.eql("vendor/handlebars.runtime.js");
+      var dest = core.buildPath(core.jsRoot + "/vendor/handlebars.runtime.js");
+      dest.should.eql("js/vendor/handlebars.runtime.js");
     });    
 
     it('should return absolute build/vendor path for src/vendor lib', function() {
       var dest = core.buildPath(core.src + "/vendor/handlebars.runtime.js", {fullpath : true});
-      dest.should.eql(core.dest + "/vendor/handlebars.runtime.js");
+      dest.should.eql(core.destJSRoot + "/vendor/handlebars.runtime.js");
     });
 
     it('should return relative dest path for src file', function() {
@@ -87,8 +87,8 @@ describe("Core", function() {
 
   describe("Resolve", function(){
     it("should find jquery", function() {
-      var out = core.resolve(core.src +"/vendor/jquery.js", "jquery");
-      out.should.equal(core.src +"/vendor/jquery.js");
+      var out = core.resolve(core.jsRoot +"/vendor/jquery.js", "jquery");
+      out.should.equal(core.jsRoot +"/vendor/jquery.js");
     });
 
     it("should find jst template", function() {

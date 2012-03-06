@@ -5,7 +5,7 @@ var assembly = require("../lib/assembly"),
 var assembler = assembly.createAssembler({src : __dirname + "/src", dest: __dirname +"/build"});
 assembler.use(assembly.processors.amdify);
 assembler.use(assembly.processors.pathify);
-assembler.use(assembly.plugins.gzip);
+// assembler.use(assembly.plugins.gzip);
 assembler.start();
 
 server.use(assembler.server());

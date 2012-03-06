@@ -20,10 +20,10 @@ describe("Pathify Processor", function() {
     out.should.equal('var app = require("app");');
   });
 
-  it("should update require for lib ", function(){
+  it("should update require for lib", function(){
     var out = pathify.process(core.src +"/foo.js", 'var app = require("handlebars.runtime");');
 
-    out.should.equal('var app = require("vendor/handlebars.runtime");');
+    out.should.equal('var app = require("js/vendor/handlebars.runtime");');
   });
 
   it("should update require for sibling and parent require ", function(){
@@ -55,27 +55,27 @@ describe("Pathify Processor", function() {
   });
 
   it("should update define to dest path", function() {
-    var out = pathify.process(core.src +"/vendor/jquery.js", 'define( "jquery", [], function () { return jQuery; } );');
-    out.should.equal('define("vendor/jquery", [], function() {\n    return jQuery;\n});');
+    var out = pathify.process(core.jsRoot +"/vendor/jquery.js", 'define( "jquery", [], function () { return jQuery; } );');
+    out.should.equal('define("js/vendor/jquery", [], function() {\n    return jQuery;\n});');
   });
 
   it("should update define dependency paths", function() {
-    var out = pathify.process(core.src +"/vendor/backbone.js", "define(['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
-    out.should.eql('define([ "vendor/underscore", "vendor/jquery", "exports" ], function(_, $, exports) {});');    
+    var out = pathify.process(core.jsRoot +"/vendor/backbone.js", "define(['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
+    out.should.eql('define([ "js/vendor/underscore", "js/vendor/jquery", "exports" ], function(_, $, exports) {});');    
   });  
 
   it("should update define with name and dependencies paths", function() {
-    var out = pathify.process(core.src +"/vendor/backbone.js", "define('backbone', ['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
-    out.should.eql('define("vendor/backbone", [ "vendor/underscore", "vendor/jquery", "exports" ], function(_, $, exports) {});');    
+    var out = pathify.process(core.jsRoot +"/vendor/backbone.js", "define('backbone', ['underscore', 'jquery', 'exports'], function(_, $, exports) {});");
+    out.should.eql('define("js/vendor/backbone", [ "js/vendor/underscore", "js/vendor/jquery", "exports" ], function(_, $, exports) {});');    
   });  
 
   it("should not update defined keyword dependencies", function() {
-    pathify.keywords.forEach(function(f){fs.writeFileSync(core.src +"/vendor/" + f +".js");});
+    pathify.keywords.forEach(function(f){fs.writeFileSync(core.jsRoot +"/vendor/" + f +".js");});
 
-    var out = pathify.process(core.src +"/vendor/backbone.js", 'define("app", ["require", "module", "exports"], function(require, module, exports) {});');
+    var out = pathify.process(core.jsRoot +"/vendor/backbone.js", 'define("app", ["require", "module", "exports"], function(require, module, exports) {});');
     out.should.equal('define("app", [ "require", "module", "exports" ], function(require, module, exports) {});');
 
-    pathify.keywords.forEach(function(f){fs.unlinkSync(core.src +"/vendor/" + f +".js");});
+    pathify.keywords.forEach(function(f){fs.unlinkSync(core.jsRoot +"/vendor/" + f +".js");});
   });
 
 });
