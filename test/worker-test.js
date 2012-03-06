@@ -63,4 +63,45 @@ describe("Worker", function() {
     });
 
   });
+
+  describe("register processors", function() {
+
+    it("should register a single processor for mime type", function(){ 
+      worker.registerProcessor("application/javascript", {});
+
+      worker.processorsFor("foo.js").should.have.lengthOf(1);
+    });
+
+    it("should register multiple processors for mime type", function(){ 
+      worker.registerProcessor("application/javascript", {} );
+      worker.registerProcessor("application/javascript", {} );
+
+      worker.processorsFor("foo.js").should.have.lengthOf(2);
+    });
+
+  });
+
+  describe("process", function() {
+    
+    it("should process source with single processor", function(done){
+      var mockProcessor = { process: function(filename, src) {
+        filename.should.equal("app.js");
+        src.should.equal('var x="bob";');
+      }};
+
+      worker.registerProcessor("application/javascript", mockProcessor);
+
+      worker.process("app.js", 'var x="bob";', done);
+    });
+
+    it("should invoke callback with passed in source when no processor for file type exists", function(done){
+      var imgBuffer = new Buffer("blah");
+
+      worker.process("hat.jpg", imgBuffer, function(err, src){
+        src.should.equal(imgBuffer);
+        done();
+      });
+    });
+
+  });
 });
