@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="/vendor/inject.js"></script>
+  <script type="text/javascript" src="/js/vendor/inject.js"></script>
 </head>
 <body>
 <h1>Testing......</h1>
@@ -17,12 +17,11 @@ document.getElementById("clearit").onclick = function() {
 
 require.setModuleRoot("");
 
-require.ensure(["app", "vendor/jquery"], function(require){
-  var app = require('app').app;
-  var $ = require('vendor/jquery');
-  console.log(app);
-  $(function(){
-    $("#template").html(app.template({name : "Dude"}));
+require.ensure(["js/app", "js/vendor/jquery"], function(require){
+  var app = require('js/app').app;
+  var $ = require('js/vendor/jquery');
+  $(function() {
+    $("#template").html(app.template({name : "World"}));
   });
 });
 </script>
