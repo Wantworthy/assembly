@@ -8,6 +8,7 @@ assembler.use(assembly.processors.pathify);
 assembler.use(assembly.plugins.gzip);
 assembler.start();
 
+server.use(assembler.server());
 server.use(express.static(assembler.dest));
 server.listen(8080, '0.0.0.0', function() {
   console.log("starting up server on localhost:8080");
