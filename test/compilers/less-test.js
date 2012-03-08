@@ -11,15 +11,19 @@ describe("Less Compiler", function() {
     compiler = new LessCompiler(TestHelper.core, {});
   });
 
-  it('should compile simple less file', function() {
-    compiler.compile(TestHelper.testSrcDir + "/less/style.less", TestHelper.fixture("/less/style.less"), function(err, data) {
-      data.should.equal(TestHelper.fixture("/less/style.css"));
+  describe("Compile", function(){
+    it('should not compile simple.less file because it gets imported', function(done) {
+      compiler.compile(TestHelper.cssRoot + "/style.less", TestHelper.fixture("/less/style.less"), function(err, data) {
+        err.message.should.equal("Skipping compilation of " + TestHelper.cssRoot + "/style.less");
+        done();
+      });
     });
-  });
 
-  it('should handle relative import', function() {
-    compiler.compile(TestHelper.testSrcDir + "/less/import.less", TestHelper.fixture("/less/import.less"), function(err, data) {
-      data.should.equal(TestHelper.fixture("/less/style.css"));
+    it('should handle relative import', function(done) {
+      compiler.compile(TestHelper.testSrcDir + "/less/import.less", TestHelper.fixture("/less/import.less"), function(err, data) {
+        data.should.equal(TestHelper.fixture("/less/style.css"));
+        done();
+      });
     });
   });
 
