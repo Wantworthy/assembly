@@ -15,6 +15,7 @@ describe("Less Compiler", function() {
     it('should not compile simple.less file because it gets imported', function(done) {
       compiler.compile(TestHelper.cssRoot + "/style.less", TestHelper.fixture("/less/style.less"), function(err, data) {
         err.message.should.equal("Skipping compilation of " + TestHelper.cssRoot + "/style.less");
+        err.skipped.should.be.true;
         done();
       });
     });
