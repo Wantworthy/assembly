@@ -8,7 +8,7 @@ var TestHelper = require("../test-helper"),
 describe("Less Compiler", function() {
   var compiler;
   beforeEach(function(){
-    compiler = new LessCompiler({}, {});
+    compiler = new LessCompiler(TestHelper.core, {});
   });
 
   it('should compile simple less file', function() {
@@ -23,4 +23,16 @@ describe("Less Compiler", function() {
     });
   });
 
+
+  describe("imported by", function() {
+
+    it("should return import.less file which imports it", function(done) {
+      compiler.importedBy(TestHelper.cssRoot +"/style.less", function(err, filenames) {
+        filenames.should.eql([TestHelper.cssRoot + "/import.less"]);
+        done();
+      });
+
+    });
+
+  }); 
 });

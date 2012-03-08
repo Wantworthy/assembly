@@ -6,9 +6,10 @@ var fs = require('fs'),
 
 var helper = exports;
 
-helper.testBuildDir = __dirname +"/build";
-helper.testSrcDir = __dirname +"/fixtures";
-helper.core = new Core({src : helper.testSrcDir, dest : helper.testBuildDir, cache: false});
+helper.testBuildDir = path.join(__dirname, "/build");
+helper.testSrcDir = path.join(__dirname, "/fixtures");
+helper.cssRoot = path.join(helper.testSrcDir, "/less");
+helper.core = new Core({src : helper.testSrcDir, dest : helper.testBuildDir, cssRoot : helper.cssRoot ,cache: false});
 
 helper.mkTestDir = function (cb) {
   path.exists(helper.testBuildDir, function (exists) {
