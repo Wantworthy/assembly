@@ -23,16 +23,27 @@ describe("Less Compiler", function() {
     });
   });
 
-
   describe("imported by", function() {
-
     it("should return import.less file which imports it", function(done) {
       compiler.importedBy(TestHelper.cssRoot +"/style.less", function(err, filenames) {
         filenames.should.eql([TestHelper.cssRoot + "/import.less"]);
         done();
       });
-
     });
 
-  }); 
+    it("should return empty list for import.less", function(done) {
+      compiler.importedBy(TestHelper.cssRoot +"/import.less", function(err, filenames) {
+        filenames.should.have.length(0);
+        done();
+      });
+    });
+
+    it("should return import.less file for subdir less file", function(done) {
+      compiler.importedBy(TestHelper.cssRoot +"/subdir/sub.less", function(err, filenames) {
+        filenames.should.eql([TestHelper.cssRoot + "/nested_import.less"]);
+        done();
+      });
+    });
+
+  });
 });
