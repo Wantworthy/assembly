@@ -1,5 +1,5 @@
 REPORTER = spec
-VERSION := $(shell cat package.json | grep version | grep -o '[0-9]\.[0-9]\.[0-9]')
+VERSION := $(shell cat package.json | grep version | grep -o '[0-9]\.[0-9]\.[0-9]+')
 TESTFILES := $(shell find test -name '*-test.js')
 
 test: test-unit
