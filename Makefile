@@ -21,6 +21,9 @@ test-spec:
 		--globals i,e \
 		$(TESTFILES)
 
+clean:
+	rm -rf ./examples/build
+
 release:
 	git tag -a v$(VERSION) -m 'release version $(VERSION)'
 	git push
