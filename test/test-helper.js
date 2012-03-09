@@ -34,6 +34,7 @@ helper.mockApp = function() {
   var mock = new broadway.App();
   mock.src = helper.testSrcDir;
   mock.dest = helper.testBuildDir;
+  mock.core = helper.core;
   
   return mock;
 };

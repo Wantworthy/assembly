@@ -8,7 +8,7 @@ var TestHelper = require("../test-helper"),
 describe("Less Compiler", function() {
   var compiler;
   beforeEach(function(){
-    compiler = new LessCompiler(TestHelper.core, {});
+    compiler = new LessCompiler(TestHelper.mockApp(), {});
   });
 
   describe("Compile", function(){
@@ -17,6 +17,16 @@ describe("Less Compiler", function() {
         err.message.should.equal("Skipping compilation of " + TestHelper.cssRoot + "/style.less");
         err.skipped.should.be.true;
         done();
+      });
+    });
+
+    it('should emit compile event for files that import style.less', function(done) {
+      compiler.manager.once("compile", function(lessfile) {
+        lessfile.should.equal(TestHelper.cssRoot + "/import.less");
+        done();
+      });
+
+      compiler.compile(TestHelper.cssRoot + "/style.less", TestHelper.fixture("/less/style.less"), function(err, data) {
       });
     });
 
