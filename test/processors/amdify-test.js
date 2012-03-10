@@ -14,12 +14,22 @@ describe("Amdify Processor", function() {
     amdify = new Amdify(core);
   });
 
-  it("should amdify script with 1 require", function(done) {
-    var foo = TestHelper.fixture("app.js");
+  describe("Amdify define", function(){
+    it("should amdify script with 1 require", function(done) {
+      var foo = TestHelper.fixture("app.js");
 
-    var src = amdify.process(TestHelper.testSrcDir +"/app.js", foo);
-    src.should.eql(TestHelper.fixture("amd/expected.js"));
-    done();
+      var src = amdify.process(TestHelper.testSrcDir +"/app.js", foo);
+      src.should.eql(TestHelper.fixture("amd/expected.js"));
+      done();
+    });    
+
+    it("should amdify coffeescript compiled code", function(done) {
+      var coffee = TestHelper.fixture("/amd/coffee_out.js");
+
+      var src = amdify.process(TestHelper.testSrcDir +"/amd/coffee_out.js", coffee);
+      src.should.eql(TestHelper.fixture("amd/coffee_out_expected.js"));
+      done();
+    });
   });
 
   describe("Module ID", function() {
