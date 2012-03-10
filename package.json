@@ -20,7 +20,7 @@
     "utile": "0.0.10",
     "watch": "0.5.x",
     "pkginfo": "0.2.x",
-    "findit" : "0.1.x",
+    "read-dir-files" : "0.1.x",
     "detective" : "~0.1.0",
     "resolve" : "0.1.x",
     "uglify-js" : "1.2.x",
