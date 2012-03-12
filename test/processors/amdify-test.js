@@ -57,7 +57,12 @@ describe("Amdify Processor", function() {
 
     it("should return single dependency", function() {
       var deps = amdify._dependencies(core.src + "/app.js", TestHelper.fixture("app.js"));
-      deps.should.eql(['require', 'module', 'exports', 'foo']);
+      deps.should.eql(['require', 'module', 'exports', './foo']);
+    });    
+
+    it("should return multiple deps", function() {
+      var deps = amdify._dependencies(core.src + "/app.js", "var faker = require('./lib/fake');");
+      deps.should.eql(['require', 'module', 'exports', './lib/fake']);
     });
 
   });

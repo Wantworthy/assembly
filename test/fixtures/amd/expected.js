@@ -1,4 +1,4 @@
-define("app", [ "require", "module", "exports", "foo" ], function(require, module, exports) {
+define("app", [ "require", "module", "exports", "./foo" ], function(require, module, exports) {
     var foo = require("./foo");
     exports.app = {
         a: "apple",
