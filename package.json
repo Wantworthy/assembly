@@ -1,7 +1,7 @@
 {
   "name": "assembly",
   "description": "build tool to assemble client side javascript projects",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "author": "Ryan Fitzgerald <ryan@codebrewstudios.com>",
   "repository": {
     "type": "git",
