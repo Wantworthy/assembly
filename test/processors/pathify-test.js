@@ -18,6 +18,11 @@ describe("Pathify Processor", function() {
     var out = pathify.process(core.src +"/foo.js", 'var app = require("./app");');
 
     out.should.equal('var app = require("app");');
+  });  
+
+  it("should update require array to correct paths", function() {
+    var out = pathify.process(core.src +"/foo.js", 'require(["./app", "./nested/baz"], function(app, baz){});');
+    out.should.equal('require([ "app", "nested/baz" ], function(app, baz) {});');
   });
 
   it("should update require for lib", function(){
@@ -42,7 +47,7 @@ describe("Pathify Processor", function() {
     var out = pathify.process(core.src +"/foo.js", 'var app = require("app")');
 
     out.should.equal('var app = require("app");');
-  });  
+  });
 
   it("should handle dot requires", function() {
     var out = pathify.process(core.src +"/foo.js", 'var name = require("./nested/baz").name');
