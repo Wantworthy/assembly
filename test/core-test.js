@@ -111,7 +111,7 @@ describe("Core", function() {
 
       TestHelper.modifyTimes(srcFile, future, now);
   
-      core.modified(srcFile, function(modified){
+      core.modified(srcFile, function(err, modified){
         modified.should.be.true;
         done();
       })
@@ -123,7 +123,7 @@ describe("Core", function() {
 
       TestHelper.modifyTimes(srcFile, now, now);
   
-      core.modified(srcFile, function(modified){
+      core.modified(srcFile, function(err, modified){
         modified.should.be.false;
         done();
       })
@@ -137,7 +137,7 @@ describe("Core", function() {
 
       TestHelper.modifyTimes(srcFile, now, future);
   
-      core.modified(srcFile, function(modified){
+      core.modified(srcFile, function(err, modified){
         modified.should.be.false;
         done();
       })
