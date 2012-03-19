@@ -10,7 +10,7 @@ describe("Worker", function() {
       mockCompiler = {mimeType: "application/javascript"};
 
   beforeEach(function() {
-    worker = new Worker(TestHelper.core);
+    worker = new Worker(TestHelper.mockApp());
   });
 
   describe('register compiler', function(){
