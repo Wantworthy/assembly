@@ -48,6 +48,21 @@ describe("Core", function() {
       var dest = core.buildPath(core.src +"/foo.js", {fullpath : true, extension: false});
       dest.should.eql(core.dest + "/foo");
     });
+
+    it('should return absolute path with version string and no extension', function() {
+      var dest = core.buildPath(core.src +"/foo.js", {fullpath : true, extension: false, version: "v1"});
+      dest.should.eql(core.dest + "/foo-v1");
+    });
+
+    it('should return absolute path with version string and extension', function() {
+      var dest = core.buildPath(core.src +"/foo.js", {fullpath : true, extension: true, version: "v1"});
+      dest.should.eql(core.dest + "/foo-v1.js");
+    });
+
+    it('should return relative path with version string and no extension', function() {
+      var dest = core.buildPath(core.src +"/foo.js", {fullpath : false, extension: false, version: "v1"});
+      dest.should.eql("foo-v1");
+    });
   });
 
   describe('Requires', function() {
