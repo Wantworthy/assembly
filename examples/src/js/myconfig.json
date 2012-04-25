@@ -1,0 +1,8 @@
+{
+	"development":{
+		"some_key":"abc"
+	},
+	"test":{
+		"some_key":"def"
+	}
+}
