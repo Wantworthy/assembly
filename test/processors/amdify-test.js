@@ -21,7 +21,7 @@ describe("Amdify Processor", function() {
       var src = amdify.process(TestHelper.testSrcDir +"/app.js", foo);
       src.should.eql(TestHelper.fixture("amd/expected.js"));
       done();
-    });    
+    });
 
     it("should amdify coffeescript compiled code", function(done) {
       var coffee = TestHelper.fixture("/amd/coffee_out.js");
