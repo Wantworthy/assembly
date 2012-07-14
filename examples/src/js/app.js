@@ -4,6 +4,7 @@ var $ = require('jquery'),
     hbarsTemplate = require('./templates/hello'),
     name = require("./foo").name,
     Animals = require("./animals"),
+    TodoView = require("./ui/todo-view"),
     config = require("./config");
 
 console.log("foo's name is.....", name);
@@ -22,3 +23,5 @@ exports.app = {
   template : template,
   hbarsTemplate : hbarsTemplate
 };
+
+$("#todos").html(new TodoView().render().el);
