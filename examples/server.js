@@ -6,6 +6,8 @@ var assembler = assembly.createAssembler({src : __dirname + "/src", dest: __dirn
 assembler.use(assembly.processors.pathify);
 assembler.use(assembly.processors.amdify);
 // assembler.use(assembly.plugins.gzip);
+// assembler.use(assembly.plugins.digest);
+
 assembler.start();
 
 server.use(assembler.server());
